@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vista Formularios</title>
+</head>
+<body>
+    <h2>Lista de Formularios</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Estado Cuenta</th>
+                <th>Número Cuenta</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Aquí se agregarán los registros dinámicamente -->
+        </tbody>
+    </table>
+
+    <script>
+        // Seleccionamos el cuerpo de la tabla donde se agregarán las filas
+        const tabla = document.querySelector("tbody");
+
+        // Llamamos al archivo PHP que devuelve los registros como JSON
+        fetch("./vista_formulario.php")
+            .then(response => response.json())  // Convertimos la respuesta en formato JSON
+            .then(data => {
+                // Iteramos sobre los datos recibidos
+                data.forEach(formulario => {
+                    // Generamos la fila con los datos del formulario
+                    tabla.innerHTML += `
+                        <tr>
+                            <td>${formulario.id}</td>
+                            <td>${formulario.estado_cuenta}</td>
+                            <td>${formulario.numero_cuenta}</td>
+                            <td>
+                                <!-- Botón Editar -->
+                                <button onclick="window.location.href='editar.php?id=${formulario.id}'">Editar</button>
+                                
+                                <!-- Formulario de Eliminar -->
+                                <form method="POST" action="eliminar_formulario.php" style="display:inline;">
+                                    <input type="hidden" name="id" value="${formulario.id}">
+                                    <button type="submit">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    `;
+                });
+            })
+            .catch(error => console.error("Error al cargar los datos: ", error));
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST" action="./tabla_envio.php">
+    <table>
+  
+        estado cuenta <input type="text" name="estado_cuenta"> <br>
+        numero de cuenta   <input type="text" name= "numero_cuenta">    <br>
+        moneda   <input type="text" name="moneda">    <br>
+        fecha de apertura    <input type="text" name="fecha_apertura">    <br>
+        fecha de vencimiento    <input type="text" name="fecha_vencimiento">    <br>
+        monto actual    <input type="text" name="monto_actual">    <br>
+        compañia    <input type="text" name="companhia">    <br>
+        direccion    <input type="text" name="direccion">    <br>
+        telefono    <input type="text" name="telefono"> 
+    </table>
+    <button>enviar</button>
+    </form>
+    <script>
+        const tabla = document.querySelector("tbody")
+
+        fetch("./vista_clientes.php").then(
+            r => r.json()
+        ).then(
+            respuesta => {
+                respuesta.forEach(cliente => {
+                    tabla.innerHTML+= `
+                    <tr>
+                        <td>${cliente.id}</td>    
+                        <td>${cliente.usuario}</td>    
+                        <td>${cliente.correo}</td>    
+                    </tr>
+                    `
+                });
+            }
+        )
+    </script>
+</body>
+</html>

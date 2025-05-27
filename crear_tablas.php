@@ -3,7 +3,7 @@ include "./conexion.php";
 //echo
 
 $sql  = "CREATE TABLE `datos` (
-  `id` int(11) NOT NULL,
+  `id int(11) NOT NULL,
   `usuario` varchar(255) NOT NULL,
   `correo` varchar(255) NOT NULL,
   `contra` varchar(255) NOT NULL
@@ -13,7 +13,7 @@ $conexion->query($sql);
 
 echo "Tablas creadasss....";
 
-$sql  = 'INSERT INTO `datos` (`id`, `usuario`, `correo`, `contra`) VALUES
+$sql  = 'INSERT INTO `datos` (`id`, `usuario`, `correo`, `contra`, `` ) VALUES
 (1, "angie", "angie@gmail.com", "$2y$10$tO324zLgUqLq3ax19G.qVeetL6yBHvmkpVsOGGIBwJ2vQLK8arfWK"),
 (2, "roberto", "roberto@gmail.com", "$2y$10$bmvbUaGmtjrahjIjlJgdjeDMjdRWTOy6S0rlhWIV30Bqi7pMes01q"),
 (3, "fabricio", "fabricio@gmail.com", "$2y$10$tQHVvOrs2jRIh3rEnXhsJeu0eOf7SH5ImUU8dKvt2c6fVu.RlOZcG"),
@@ -25,3 +25,4 @@ $sql  = 'INSERT INTO `datos` (`id`, `usuario`, `correo`, `contra`) VALUES
 $conexion->query($sql);
 
 echo "Datos insertadoss....";
+

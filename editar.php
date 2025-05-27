@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $direccion = $_POST["direccion"];
     $telefono = $_POST["telefono"];
 
-    $sql = "UPDATE formulario_principal SET 
+    $sql = "UPDATE datos SET 
         estado_cuenta = ?, 
         numero_cuenta = ?, 
         moneda = ?, 
@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 } else if (isset($_GET["id"])) {
     $id = $_GET["id"];
-    $stmt = $conexion->prepare("SELECT * FROM formulario_principal WHERE id = ?");
+    $stmt = $conexion->prepare("SELECT * FROM datos WHERE id = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $resultado = $stmt->get_result();
